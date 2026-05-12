@@ -30,7 +30,7 @@ pip install airgradient[mqtt]
 from airgradient import LocalClient
 
 # Use your device's IP or its mDNS name (shown on device screen during setup)
-client = LocalClient("airgradient_3cdc75bcce40.local")
+client = LocalClient("airgradient_YOURSERIAL.local")
 m = client.get_current_measures()
 
 print(f"CO2:   {m.rco2} ppm")
@@ -63,7 +63,7 @@ Publish readings to a local MQTT broker every 30 seconds:
 from airgradient.mqtt.bridge import MQTTBridge
 
 bridge = MQTTBridge(
-    device_host="airgradient_3cdc75bcce40.local",
+    device_host="airgradient_YOURSERIAL.local",
     broker_url="mqtt://localhost:1883",
     topic_prefix="airgradient/office",
     interval=30,
@@ -83,7 +83,7 @@ airgradient/office/state      → {"co2": 422, "pm25": 5.2, ...}
 Or from the command line:
 ```bash
 python -m airgradient.mqtt.bridge \
-  --host airgradient_3cdc75bcce40.local \
+  --host airgradient_YOURSERIAL.local \
   --broker mqtt://localhost:1883 \
   --topic airgradient/office \
   --interval 30
@@ -93,7 +93,7 @@ python -m airgradient.mqtt.bridge \
 
 ```bash
 # Read from a local device
-ag read --host airgradient_3cdc75bcce40.local
+ag read --host airgradient_YOURSERIAL.local
 
 # Read from cloud
 ag cloud --token YOUR_TOKEN --location YOUR_LOCATION_ID
